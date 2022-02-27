@@ -2,6 +2,7 @@ import bot from "../lib/bot";
 import { restart } from "../utils/pm2";
 import { listPs } from "../utils/listPs";
 import checkAdmin from "../utils/checkAdmin";
+import bots from "../../bots.json";
 
 //pm2Commands commands
 const pm2Commands = () => {
@@ -9,6 +10,20 @@ const pm2Commands = () => {
   bot.hears(/^\/(list|ls)/, async (ctx) => {
     if (checkAdmin(ctx.from.id)) {
       ctx.replyWithHTML(await listPs());
+    } else {
+      if (bots.length === 0) {
+        return ctx.reply("No bots in the list");
+      }
+      let returnMessage = "Bots listed\n\n";
+      bots.forEach((bot) => {
+        if (bot.username.indexOf("@") === -1) {
+          returnMessage += `@${bot.username}\n`;
+        } else {
+          returnMessage += `${bot.username}\n`;
+        }
+        returnMessage += `<i>${bot.description}</i>\n\n`;
+      });
+      return ctx.replyWithHTML(returnMessage);
     }
   });
 

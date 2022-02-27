@@ -7,16 +7,12 @@ export function getBotCommands(): BotCommand[] {
   // Update this list of commands
   const rawBotCommands = [
     {
-      command: "start",
-      description: "Set/Change your name",
-    },
-    {
-      command: "account",
-      description: "Get account information of user",
-    },
-    {
       command: "help",
       description: "Find out more on the bot",
+    },
+    {
+      command: "ls",
+      description: "List bots",
     },
   ];
 
