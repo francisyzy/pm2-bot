@@ -8,7 +8,10 @@ import { printBotInfo } from "./utils/consolePrintUsername";
 
 import bot from "./lib/bot";
 import helper from "./commands/helper";
+import pm2Commands from "./commands/pm2Commands";
 import catchAll from "./commands/catch-all";
+
+import { listPs } from "./utils/listPs";
 
 //Production Settings
 if (process.env.NODE_ENV === "production") {
@@ -37,12 +40,7 @@ if (process.env.NODE_ENV === "production") {
     }
     return next();
   });
-  bot.launch({
-    webhook: {
-      domain: config.URL,
-      port: Number(config.PORT),
-    },
-  });
+  bot.launch();
 } else {
   //Development logging
   bot.use(Telegraf.log());
@@ -51,6 +49,16 @@ if (process.env.NODE_ENV === "production") {
 }
 
 helper();
+pm2Commands();
+
+setInterval(async () => {
+  if (config.ADMIN_ID !== 0) {
+    bot.telegram.sendMessage(config.ADMIN_ID, await listPs(), {
+      disable_notification: true,
+      parse_mode: "HTML",
+    });
+  }
+}, 330000);
 
 //Catch all unknown messages/commands
 catchAll();
