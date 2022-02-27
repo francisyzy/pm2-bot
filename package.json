@@ -1,16 +1,12 @@
 {
   "name": "pm2-bot",
-  "version": "0.1.1",
-  "description": "Template for creating future telegram bot apps",
+  "version": "0.2.0",
+  "description": "A bot that list the pm2 processes and list the bots specified",
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "build": "npm run generate && npm run deploy && tsc -p .",
-    "dev": "nodemon src/index.ts",
-    "generate": "prisma generate",
-    "deploy": "prisma migrate deploy",
-    "migrate": "prisma migrate dev",
-    "reset": "prisma migrate reset"
+    "build": "tsc -p .",
+    "dev": "nodemon src/index.ts"
   },
   "repository": {
     "type": "git",
