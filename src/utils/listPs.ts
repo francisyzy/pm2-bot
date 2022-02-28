@@ -1,7 +1,6 @@
 import { pad, timeSince } from "./messageHandler";
 import { list } from "./pm2";
 
-
 export async function listPs(): Promise<string> {
   const status = {
     online: "\u{2705}",
@@ -30,6 +29,7 @@ export async function listPs(): Promise<string> {
         pad`MEM: ${Math.round(proc.monit.memory / 1024 / 1024)}Mb`,
         pad`CPU: ${proc.monit.cpu} %`,
         pad`UPTIME: ${timeSince(proc.pm2_env.pm_uptime)}`,
+        pad`UPTIME_: ${proc.pm2_env.pm_uptime}`,
         pad`RESTARTS: ${proc.pm2_env.restart_time}`,
         pad`STATUS: ${proc.pm2_env.status}`,
         "</pre>",
