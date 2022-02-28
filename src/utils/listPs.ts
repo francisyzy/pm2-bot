@@ -17,7 +17,7 @@ export async function listPs(): Promise<string> {
     //@ts-ignore error not well defined in pm2 types
     return err.message;
   }
-  let body = [];
+  let body = [`${new Date().toString()}`];
   //@ts-ignore response not well defined in pm2 types
   for (const proc of response) {
     body.push(
