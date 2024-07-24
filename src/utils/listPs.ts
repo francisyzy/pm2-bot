@@ -1,5 +1,6 @@
 import config from "../config";
 import bot from "../lib/bot";
+import { getFirstAdmin } from "./checkAdmin";
 import { pad, timeSince } from "./messageHandler";
 import { list } from "./pm2";
 
@@ -39,12 +40,12 @@ export async function listPs(): Promise<string> {
     );
     if (
       proc.pm2_env.status !== "online" &&
-      config.ADMIN_ID !== 0 &&
+      getFirstAdmin() !== 0 &&
       config.LOG_GROUP_ID
     ) {
       bot.telegram.sendMessage(
         config.LOG_GROUP_ID,
-        `Hey <a href="tg://user?id=${config.ADMIN_ID}">Admin!</a>, one of the apps is not "online"`,
+        `Hey <a href="tg://user?id=${getFirstAdmin()}">Admin!</a>, one of the apps is not "online"`,
         { parse_mode: "HTML" },
       );
     }

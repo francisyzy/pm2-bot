@@ -1,7 +1,7 @@
 import bot from "../lib/bot";
 import { restart } from "../utils/pm2";
 import { listPs } from "../utils/listPs";
-import checkAdmin from "../utils/checkAdmin";
+import { checkAdmin } from "../utils/checkAdmin";
 import bots from "../../bots.json";
 
 //pm2Commands commands

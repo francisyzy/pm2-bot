@@ -12,6 +12,7 @@ import pm2Commands from "./commands/pm2Commands";
 import catchAll from "./commands/catch-all";
 
 import { listPs } from "./utils/listPs";
+import { checkAdmin, getFirstAdmin } from "./utils/checkAdmin";
 
 //Production Settings
 if (process.env.NODE_ENV === "production") {
@@ -19,7 +20,7 @@ if (process.env.NODE_ENV === "production") {
   bot.use((ctx, next) => {
     if (ctx.message && config.LOG_GROUP_ID) {
       let userInfo: string;
-      if (ctx.message.from.id !== config.ADMIN_ID) {
+      if (!checkAdmin(ctx.message.from.id)) {
         if (ctx.message.from.username) {
           userInfo = `name: <a href="tg://user?id=${
             ctx.message.from.id
@@ -54,8 +55,9 @@ helper();
 pm2Commands();
 
 setInterval(async () => {
-  if (config.ADMIN_ID !== 0) {
-    bot.telegram.sendMessage(config.ADMIN_ID, await listPs(), {
+  const adminId = getFirstAdmin()
+  if (adminId !== 0) {
+    bot.telegram.sendMessage(adminId, await listPs(), {
       disable_notification: true,
       parse_mode: "HTML",
     });

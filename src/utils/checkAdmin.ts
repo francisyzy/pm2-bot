@@ -1,5 +1,15 @@
 import config from "../config";
 
-export default function checkAdmin(userId: number) {
-  return userId === config.ADMIN_ID;
+export function checkAdmin(userId: number): boolean {
+  // Split the string of numbers into number[]
+  const numberSets = config.ADMIN_IDs.split(";").map(Number);
+
+  return numberSets.includes(userId);
+}
+
+export function getFirstAdmin(): number {
+  // Split the string of numbers into number[]
+  const numberSets = config.ADMIN_IDs.split(";").map(Number);
+
+  return numberSets[0];
 }

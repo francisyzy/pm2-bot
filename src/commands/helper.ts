@@ -2,14 +2,16 @@ import bot from "../lib/bot";
 import { toEscapeHTMLMsg } from "../utils/messageHandler";
 import { Scenes, session, Markup, Composer } from "telegraf";
 import { getBotCommands } from "../utils/botCommands";
-import checkAdmin from "../utils/checkAdmin";
+import { checkAdmin } from "../utils/checkAdmin";
 
 //General helper commands
 const helper = () => {
   //All bots start with /start
   bot.start((ctx) => {
     ctx.telegram.setMyCommands(getBotCommands());
-    return ctx.reply("Welcome to a list of bots, /ls to see a list of bots");
+    return ctx.reply(
+      "Welcome to a list of bots, /ls to see a list of bots",
+    );
   });
 
   bot.help((ctx) =>
