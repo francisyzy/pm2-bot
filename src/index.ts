@@ -62,7 +62,7 @@ setInterval(async () => {
       parse_mode: "HTML",
     });
   }
-}, 330000);
+}, 86400000);
 
 //Catch all unknown messages/commands
 catchAll();

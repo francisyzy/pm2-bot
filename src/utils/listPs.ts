@@ -38,17 +38,17 @@ export async function listPs(): Promise<string> {
         "</pre>",
       ].join("\n"),
     );
-    if (
-      proc.pm2_env.status !== "online" &&
-      getFirstAdmin() !== 0 &&
-      config.LOG_GROUP_ID
-    ) {
-      bot.telegram.sendMessage(
-        config.LOG_GROUP_ID,
-        `Hey <a href="tg://user?id=${getFirstAdmin()}">Admin!</a>, one of the apps is not "online"`,
-        { parse_mode: "HTML" },
-      );
-    }
+    // if (
+    //   proc.pm2_env.status !== "online" &&
+    //   getFirstAdmin() !== 0 &&
+    //   config.LOG_GROUP_ID
+    // ) {
+    //   bot.telegram.sendMessage(
+    //     config.LOG_GROUP_ID,
+    //     `Hey <a href="tg://user?id=${getFirstAdmin()}">Admin!</a>, one of the apps is not "online"`,
+    //     { parse_mode: "HTML" },
+    //   );
+    // }
   }
   return body.join("\n");
 }
