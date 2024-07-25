@@ -1,6 +1,18 @@
 [
   {
-    "username": "sample",
-    "description": "checks sample's for you"
+    "username": "excellence_wbgt_bot",
+    "description": "Lets you record WBGT status"
+  },
+  {
+    "username": "ForayWatchBot",
+    "description": "Companion bot for https://telegram.me/chtwrsbot?start=5643e700a64041fb9adb7ac9e6226039 to calculate Foray Timings"
+  },
+  {
+    "username": "SGPogoEvents",
+    "description": "PokemonGo Events announcement channel when the event is about to start (15 minutes before it happens)"
+  },
+  {
+    "username": "SG_Custom_Camera",
+    "description": "Archive of the traffic camera at the borders to check for traffic. Good for looking back at previous traffic conditions to extrapolate future traffic"
   }
 ]
